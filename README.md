@@ -13,7 +13,7 @@ centralized event log.
 Processing and aggregation: the service is capable of processing and aggregating registered events in a human-readable format,
 so that information can be analyzed and synthesized.
 
-0. Fill in .env.
+.env
 ````
 LOG_LEVEL=debug|info|error
 DEBUG=1|0
