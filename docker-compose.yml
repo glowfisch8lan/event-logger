@@ -1,0 +1,26 @@
+version: '3.9'
+networks:
+  pure:
+    external: true
+    name: pure
+    enable_ipv6: false
+
+services:
+  event-logger:
+    container_name: event-logger
+    hostname: event-logger
+    build: ./docker
+    restart: always
+    entrypoint:
+      - bash
+      - '-c'
+      - |
+        chmod +x /app/bootstrap.sh
+        exec /app/bootstrap.sh
+    environment:
+      IS_DOCKER: 'yes'
+      DEBUG: "${DEBUG:-0}"
+    volumes:
+      - ./:/app:delegated
+    ports:
+      - "${EXTERNAL_PORT:-8080}:8181"
